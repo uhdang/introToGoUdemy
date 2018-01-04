@@ -1,0 +1,8 @@
+Receivers     Values
+-------------------------------------
+(t T)         T and *T
+(t *T)        *T
+
+
+When there is a value receiver, you can pass in value AND pointer. 
+When there is a pointer receiver, you can only pass in pointer.

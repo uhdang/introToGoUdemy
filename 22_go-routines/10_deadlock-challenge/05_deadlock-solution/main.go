@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	c := make(chan int)
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			c <- i
+		}
+		close(c)
+	}()
+
+	for n := range c {
+		fmt.Println(n)
+	}
+}
+
+// remember to close your channel !!
+// if you don't you'll get deadlock error

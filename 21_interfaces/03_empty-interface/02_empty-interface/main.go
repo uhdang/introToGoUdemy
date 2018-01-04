@@ -2,25 +2,44 @@ package main
 
 import "fmt"
 
-type square struct {
-	side float64
+type vehicles interface{}
+
+type vehicle struct {
+	Seats    int
+	MaxSpeed int
+	Color    string
 }
 
-func (z square) area() float64 {
-	return z.side * z.side
+type car struct {
+	vehicle
+	Wheels int
+	Doors  int
 }
 
-type shape interface {
-	area() float64
+type plane struct {
+	vehicle
+	Jet bool
 }
 
-func info(z shape) {
-	fmt.Println(z)
-	fmt.Println(z.area())
+type boat struct {
+	vehicle
+	Length int
 }
 
 func main() {
-	s := square{10}       // 100
-	fmt.Printf("%T\n", s) // float64
-	info(s)               //10, 100
+	prius := car{}
+	tacoma := car{}
+	bmw528 := car{}
+	boeing747 := plane{}
+	boeing757 := plane{}
+	boeing767 := plane{}
+	sanger := boat{}
+	nautique := boat{}
+	malibu := boat{}
+	rides := []vehicles{prius, tacoma, bmw528, boeing767, boeing757, boeing747, sanger, nautique, malibu}
+
+	for key, value := range rides {
+		fmt.Println(key, " - ", value)
+	}
+
 }

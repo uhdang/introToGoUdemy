@@ -1,41 +1,40 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-type square struct {
-	side float64
+type animal struct {
+	sound string
 }
 
-// another shape
-type circle struct {
-	radius float64
+type dog struct {
+	animal
+	friendly bool
 }
 
-type shape interface {
-	area() float64
+type cat struct {
+	animal
+	annoying bool
 }
 
-func (s square) area() float64 {
-	return s.side * s.side
+type elephant struct {
+	animal
+	big bool
 }
 
-// which implements the shape interface
-
-func (c circle) area() float64 {
-	return math.Pi * c.radius * c.radius
-}
-
-func info(z shape) {
-	fmt.Println(z)
-	fmt.Println(z.area())
+func specs(a interface{}) {
+	fmt.Println(a)
 }
 
 func main() {
-	s := square{10}
-	c := circle{5}
-	info(s)
-	info(c)
+	fido := dog{animal{"woof"}, true}
+	fifi := cat{animal{"meow"}, true}
+
+	momo := elephant{animal{"booo"}, true}
+	fofo := elephant{animal{"mooo"}, false}
+
+	specs(fido)
+	specs(fifi)
+	specs(momo)
+	specs(fofo)
+
 }
